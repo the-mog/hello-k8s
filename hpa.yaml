@@ -2,6 +2,7 @@ apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
   name: nodeapp
+  namespace: nodeapp
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
