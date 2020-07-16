@@ -1,0 +1,56 @@
+kind: ServiceAccount
+apiVersion: v1
+metadata:
+  name: web
+  namespace: nodeapp
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+  namespace: nodeapp
+  labels:
+    app.kubernetes.io/name: web
+    app.kubernetes.io/part-of: nodeapp
+    app.kubernetes.io/version: v0.0.1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-svc
+  template:
+    metadata:
+      labels:
+        app: web-svc
+    spec:
+      serviceAccountName: web
+      containers:
+      - name: nodeapp
+        image: nuttsmare/node-hello-web:v0.0.1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 64Mi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-svc
+  namespace: nodeapp
+spec:
+  type: ClusterIP
+  selector:
+    app: web-svc
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080

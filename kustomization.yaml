@@ -1,0 +1,4 @@
+namespace: nodeapp
+resources:
+  - hpa.yaml
+  - web-deployment.yaml
