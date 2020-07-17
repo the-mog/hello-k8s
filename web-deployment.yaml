@@ -26,7 +26,7 @@ spec:
       serviceAccountName: web
       containers:
       - name: nodeapp
-        image: nuttsmare/node-hello-web:v0.0.3
+        image: docker.io/the-mog/hello-node:latest
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
