@@ -29,10 +29,13 @@ spec:
     threshold: 5
     # max traffic percentage routed to canary
     # percentage (0-100)
-    maxWeight: 50
+    iterations: 10
+    # Traffic shadowing (compatible with Istio only)
+    # mirror: true
+    # maxWeight: 50
     # canary increment step
     # percentage (0-100)
-    stepWeight: 5
+    # stepWeight: 5
     # Linkerd Prometheus checks
     metrics:
     - name: request-success-rate

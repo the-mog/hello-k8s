@@ -13,6 +13,8 @@ metadata:
     app.kubernetes.io/name: web
     app.kubernetes.io/part-of: nodeapp
     app.kubernetes.io/version: v0.0.3
+    app: web
+    coloe: blue
 spec:
   replicas: 1
   selector:
@@ -50,6 +52,7 @@ spec:
   type: ClusterIP
   selector:
     app: web-svc
+    color: blue
   ports:
   - name: http
     port: 8080
